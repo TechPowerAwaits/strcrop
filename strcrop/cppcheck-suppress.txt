@@ -1,0 +1,5 @@
+# Copyright 2020 Richard Johnston <techpowerawaits@outlook.com>
+# SPDX-license-identifier: CC0-1.0
+# This simple text file contains warnings and errors to supress in cppcheck.
+
+missingIncludeSystem # Suppress Warning.
