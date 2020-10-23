@@ -2,7 +2,7 @@
 
 ## __About__
 
-StrCrop is a string manipulation tool. It accepts the number of characters to crop 
+strcrop is a string manipulation tool. It accepts the number of characters to crop 
 from the left and right side of a string. It then outs that modified string to standard 
 output.
 
