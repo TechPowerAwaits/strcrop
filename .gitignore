@@ -60,6 +60,7 @@ dkms.conf
 .metadata
 bin/
 Debug/
+Release/
 tmp/
 *.tmp
 *.bak
