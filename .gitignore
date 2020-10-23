@@ -1,6 +1,6 @@
 
-# Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,c,eclipse,vim,visualstudio,visualstudiocode,backup
-# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,c,eclipse,vim,visualstudio,visualstudiocode,backup
+# Created by https://www.toptal.com/developers/gitignore/api/macos,windows,linux,c,eclipse,vim,visualstudio,visualstudiocode,backup,kate,kdevelop4
+# Edit at https://www.toptal.com/developers/gitignore?templates=macos,windows,linux,c,eclipse,vim,visualstudio,visualstudiocode,backup,kate,kdevelop4
 
 ### Backup ###
 *.bak
@@ -126,6 +126,15 @@ local.properties
 ### Eclipse Patch ###
 # Spring Boot Tooling
 .sts4-cache/
+
+### Kate ###
+# Swap Files #
+.*.kate-swp
+.swp.*
+
+### KDevelop4 ###
+*.kdev4
+.kdev4/
 
 ### Linux ###
 *~
@@ -578,4 +587,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,c,eclipse,vim,visualstudio,visualstudiocode,backup
+# End of https://www.toptal.com/developers/gitignore/api/macos,windows,linux,c,eclipse,vim,visualstudio,visualstudiocode,backup,kate,kdevelop4
