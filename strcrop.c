@@ -51,10 +51,12 @@ int main(int argc, char **argv) {
 
 		if ( strcmp(current_arg, "--version") == 0 ) {
 			print_version();
+			free(inital_str);
 			exit(REG_EXIT);
 		}
 		else if ( strcmp(current_arg, "--help") == 0 ) {
 			print_usage();
+			free(inital_str);
 			exit(REG_EXIT);
 		}
 		if ( strcmp(current_arg, "-l") == 0 ) {
