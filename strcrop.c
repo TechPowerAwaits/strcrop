@@ -107,6 +107,12 @@ int main(int argc, char **argv) {
 	int lcrop_len = inital_len - cleft_num; ///> the length of the string minus left-cropped characters.
 	char *lcropped = (char *) malloc(sizeof(char) * lcrop_len); // Create left-cropped array.
 
+	if ( lcropped == NULL ) {
+		fputs("FE: Unable to commit array to memory", stderr);
+		free(inital_str);
+		exit(MEM_ERROR);
+	}
+
 	for ( unsigned count = 0; count <= inital_elements; count++ ) {
 		/// Add the left crop value onto the count value in order
 		/// to ensure it is cropped.
