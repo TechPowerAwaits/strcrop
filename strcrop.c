@@ -26,23 +26,19 @@
 
 void print_usage();
 void print_version();
-void free_inital_str(void);
-char *inital_str; ///> The user-provided string.
 
 int main(int argc, char **argv) {
 	if ( argc > MAX_ARGS ) {
 		print_usage();
 		exit(USER_ERROR);
 	}
-
+	char *inital_str; ///> The user-provided string.
 	inital_str = (char *) malloc(sizeof(char) * MAX_STR_LEN); ///> Allocate memory.
 
 	if ( inital_str == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
 		exit(MEM_ERROR);
 	}
-
-	atexit(free_inital_str);
 
 	int cleft_num = 0;
 	int cright_num = 0;
@@ -73,12 +69,14 @@ int main(int argc, char **argv) {
 			if ( crop_left ) {
 				cleft_num = atoi(current_arg);
 				if ( cleft_num < 0 ) {
+					free(inital_str);
 					exit(USER_ERROR);
 				}
 			}
 			else if ( crop_right ) {
 				cright_num = atoi(current_arg);
 				if ( cright_num < 0 ) {
+					free(inital_str);
 					exit(USER_ERROR);
 				}
 			}
@@ -87,6 +85,7 @@ int main(int argc, char **argv) {
 			}
 			else {
 				print_usage();
+				free(inital_str);
 				exit(USER_ERROR);
 			}
 
@@ -123,6 +122,8 @@ int main(int argc, char **argv) {
 
     if ( final_str == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
+		free(lcropped);
+		free(inital_str);
     	exit(MEM_ERROR);
     }
 
@@ -131,6 +132,8 @@ int main(int argc, char **argv) {
     /// This is something that strncpy can't do.
     snprintf(final_str, ++f_elements, "%s", lcropped);
     printf("%s", final_str);
+    free(lcropped);
+    free(inital_str);
     free(final_str);
 	return(0);
 }
@@ -145,6 +148,4 @@ void print_version() {
 	puts("SPDX-license-identifier: 0BSD");
 	puts("This program is open source. Enjoy!");
 }
-void free_inital_str(void) {
-	free(inital_str);
-}
+
