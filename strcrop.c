@@ -33,7 +33,8 @@ int main(int argc, char **argv) {
 		exit(USER_ERROR);
 	}
 	char *inital_str; ///> The user-provided string.
-	inital_str = (char *) malloc(sizeof(char) * MAX_STR_LEN); ///> Allocate memory.
+	/// Allocate memory.
+	inital_str = (char *) malloc(sizeof(char) * MAX_STR_LEN);
 
 	if ( inital_str == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
@@ -104,8 +105,10 @@ int main(int argc, char **argv) {
 	// Crop left variables.
 	int inital_len = strlen(inital_str);
 	int inital_elements = ++inital_len;
-	int lcrop_len = inital_len - cleft_num; ///> the length of the string minus left-cropped characters.
-	char *lcropped = (char *) malloc(sizeof(char) * lcrop_len); // Create left-cropped array.
+	/// the length of the string minus left-cropped characters.
+	int lcrop_len = inital_len - cleft_num;
+	// Create left-cropped array.
+	char *lcropped = (char *) malloc(sizeof(char) * lcrop_len);
 
 	if ( lcropped == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
@@ -124,7 +127,8 @@ int main(int argc, char **argv) {
 	int lcropped_len = strlen(lcropped);
 	int f_len = lcropped_len - cright_num - 1; ///> Final character num.
 	int f_elements = ++f_len; ///> Final elements length.
-    char *final_str = (char *) malloc(sizeof(char) * f_elements); // A pointer to the final array with the right side cropped out.
+	/// A pointer to the final array with the right side cropped out.
+    char *final_str = (char *) malloc(sizeof(char) * f_elements);
 
     if ( final_str == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
