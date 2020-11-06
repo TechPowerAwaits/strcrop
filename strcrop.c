@@ -51,11 +51,11 @@ int main(int argc, char **argv) {
 
 		if ( strcmp(current_arg, "--version") == 0 ) {
 			print_version();
-			exit(0);
+			exit(REG_EXIT);
 		}
 		else if ( strcmp(current_arg, "--help") == 0 ) {
 			print_usage();
-			exit(0);
+			exit(REG_EXIT);
 		}
 		if ( strcmp(current_arg, "-l") == 0 ) {
 			crop_left = true;
@@ -145,7 +145,7 @@ int main(int argc, char **argv) {
     free(lcropped);
     free(inital_str);
     free(final_str);
-	return(0);
+	return(REG_EXIT);
 }
 
 void print_usage() {
