@@ -106,7 +106,7 @@ int main(int argc, char **argv) {
 	int inital_len = strlen(inital_str);
 	int inital_elements = ++inital_len;
 	int lcrop_len = inital_len - cleft_num; ///> the length of the string minus left-cropped characters.
-	char lcropped = (char *) malloc(sizeof(char) * lcrop_len); // Create left-cropped array.
+	char *lcropped = (char *) malloc(sizeof(char) * lcrop_len); // Create left-cropped array.
 
 	for ( unsigned count = 0; count <= inital_elements; count++ ) {
 		/// Add the left crop value onto the count value in order
