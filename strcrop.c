@@ -35,7 +35,7 @@ int main(int argc, char **argv) {
 		exit(USER_ERROR);
 	}
 
-	inital_str = calloc(MAX_STR_LEN, sizeof(char)); ///> Allocate memory.
+	inital_str = (char *) malloc(sizeof(char) * MAX_STR_LEN); ///> Allocate memory.
 
 	if ( inital_str == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
@@ -119,7 +119,7 @@ int main(int argc, char **argv) {
 	int lcropped_len = strlen(lcropped);
 	int f_len = lcropped_len - cright_num - 1; ///> Final character num.
 	int f_elements = ++f_len; ///> Final elements length.
-    char *final_str = (char *) calloc(f_elements, sizeof(char)); // A pointer to the final array with the right side cropped out.
+    char *final_str = (char *) malloc(sizeof(char) * f_elements); // A pointer to the final array with the right side cropped out.
 
     if ( final_str == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
