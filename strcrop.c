@@ -30,7 +30,7 @@ void print_version();
 int main(int argc, char **argv) {
 	if ( argc > MAX_ARGS ) {
 		print_usage();
-		exit(USER_ERROR);
+		return(USER_ERROR);
 	}
 	char *inital_str; ///> The user-provided string.
 	/// Allocate memory.
@@ -38,7 +38,7 @@ int main(int argc, char **argv) {
 
 	if ( inital_str == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
-		exit(MEM_ERROR);
+		return(MEM_ERROR);
 	}
 
 	int cleft_num = 0;
@@ -52,12 +52,12 @@ int main(int argc, char **argv) {
 		if ( strcmp(current_arg, "--version") == 0 ) {
 			print_version();
 			free(inital_str);
-			exit(REG_EXIT);
+			return(REG_EXIT);
 		}
 		else if ( strcmp(current_arg, "--help") == 0 ) {
 			print_usage();
 			free(inital_str);
-			exit(REG_EXIT);
+			return(REG_EXIT);
 		}
 		if ( strcmp(current_arg, "-l") == 0 ) {
 			crop_left = true;
@@ -73,14 +73,14 @@ int main(int argc, char **argv) {
 				cleft_num = atoi(current_arg);
 				if ( cleft_num < 0 ) {
 					free(inital_str);
-					exit(USER_ERROR);
+					return(USER_ERROR);
 				}
 			}
 			else if ( crop_right ) {
 				cright_num = atoi(current_arg);
 				if ( cright_num < 0 ) {
 					free(inital_str);
-					exit(USER_ERROR);
+					return(USER_ERROR);
 				}
 			}
 			else if ( use_str ) {
@@ -89,7 +89,7 @@ int main(int argc, char **argv) {
 			else {
 				print_usage();
 				free(inital_str);
-				exit(USER_ERROR);
+				return(USER_ERROR);
 			}
 
 			// Set bools back to zero.
@@ -115,7 +115,7 @@ int main(int argc, char **argv) {
 	if ( lcropped == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
 		free(inital_str);
-		exit(MEM_ERROR);
+		return(MEM_ERROR);
 	}
 
 	for ( unsigned count = 0; count <= inital_elements; count++ ) {
@@ -136,7 +136,7 @@ int main(int argc, char **argv) {
 		fputs("FE: Unable to commit array to memory", stderr);
 		free(lcropped);
 		free(inital_str);
-    	exit(MEM_ERROR);
+    	return(MEM_ERROR);
     }
 
     /* Copy the lcropped[] array into the final_str[] array with the right-cropped characters removed. */
