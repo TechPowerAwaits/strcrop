@@ -12,6 +12,11 @@
 
 #define VERSION "1.1.0"
 
+// Forces the use of insecure functions when using Microsoft's C Runtime Library.
+// Removes certain deprecation warnings.
+
+#define _CRT_SECURE_NO_WARNINGS
+
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
