@@ -77,7 +77,7 @@ int main(int argc, char **argv) {
 			if ( crop_left ) {
 				cleft_num = atoi(current_arg);
 				if ( cleft_num < 0 ) {
-					fprintf(stderr, "\nFE: User provided value %i is negative", cleft_num);
+					fprintf(stderr, "\nFE: User provided value %i is negative\n", cleft_num);
 					print_usage();
 					free(inital_str);
 					return(USER_ERROR);
@@ -86,7 +86,7 @@ int main(int argc, char **argv) {
 			else if ( crop_right ) {
 				cright_num = atoi(current_arg);
 				if ( cright_num < 0 ) {
-					fprintf(stderr, "\nFE: User provided value %i is negative", cleft_num);
+					fprintf(stderr, "\nFE: User provided value %i is negative\n", cleft_num);
 					print_usage();
 					free(inital_str);
 					return(USER_ERROR);
@@ -117,7 +117,7 @@ int main(int argc, char **argv) {
 	unsigned int inital_len = strlen(inital_str);
 	unsigned int total_crop = cleft_num + cright_num;
 	if (total_crop > inital_len) {
-		fprintf(stderr, "FE: Total crop value %u is greater than length of string", \
+		fprintf(stderr, "FE: Total crop value %u is greater than length of string\n", \
 			total_crop);
 		free(inital_str);
 		return(USER_ERROR);
