@@ -3,10 +3,10 @@
 // SPDX-license-identifier: 0BSD
 
 /// @mainpage
-/// Provides a simple method to crop a inital_str.
+/// Provides a simple method to crop a initial_str.
 ///
 /// lcrop - how much to crop on left side; rcrop - how much to crop starting from null.
-/// Usage: strcrop -l <left-crop> -s <inital_str> -r <right-crop>
+/// Usage: strcrop -l <left-crop> -s <initial_str> -r <right-crop>
 
 /// @file strcrop.c
 
@@ -37,15 +37,15 @@ int main(int argc, char **argv) {
 		print_usage();
 		return(USER_ERROR);
 	}
-	char *inital_str; ///> The user-provided string.
+	char *initial_str; ///> The user-provided string.
 	/// Allocate memory.
-	inital_str = (char *) malloc(sizeof(char) * MAX_STR_LEN);
+	initial_str = (char *) malloc(sizeof(char) * MAX_STR_LEN);
 
-	if ( inital_str == NULL ) {
+	if ( initial_str == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
 		return(MEM_ERROR);
 	}
-	inital_str[0] = '\0'; // Always ensure there is a NULL.
+	initial_str[0] = '\0'; // Always ensure there is a NULL.
 	int cleft_num = 0;
 	int cright_num = 0;
 	_Bool crop_left = false;
@@ -56,12 +56,12 @@ int main(int argc, char **argv) {
 
 		if ( strcmp(current_arg, "--version") == 0 ) {
 			print_version();
-			free(inital_str);
+			free(initial_str);
 			return(REG_EXIT);
 		}
 		else if ( strcmp(current_arg, "--help") == 0 ) {
 			print_usage();
-			free(inital_str);
+			free(initial_str);
 			return(REG_EXIT);
 		}
 		if ( strcmp(current_arg, "-l") == 0 ) {
@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
 				if ( cleft_num < 0 ) {
 					fprintf(stderr, "\nFE: User provided value %i is negative\n", cleft_num);
 					print_usage();
-					free(inital_str);
+					free(initial_str);
 					return(USER_ERROR);
 				}
 			}
@@ -88,16 +88,16 @@ int main(int argc, char **argv) {
 				if ( cright_num < 0 ) {
 					fprintf(stderr, "\nFE: User provided value %i is negative\n", cleft_num);
 					print_usage();
-					free(inital_str);
+					free(initial_str);
 					return(USER_ERROR);
 				}
 			}
 			else if ( use_str ) {
-				strncpy(inital_str, current_arg, MAX_STR_LEN);
+				strncpy(initial_str, current_arg, MAX_STR_LEN);
 			}
 			else {
 				print_usage();
-				free(inital_str);
+				free(initial_str);
 				return(USER_ERROR);
 			}
 
@@ -108,36 +108,36 @@ int main(int argc, char **argv) {
 		}
 	}
 
-	if (!strlen(inital_str)) {
-		// If inital_str is non-existant
-		fgets(inital_str, MAX_STR_LEN, stdin);
+	if (!strlen(initial_str)) {
+		// If initial_str is non-existant
+		fgets(initial_str, MAX_STR_LEN, stdin);
 	}
 
 	// Make sure to error out if crop values greater than string length.
-	unsigned int inital_len = strlen(inital_str);
+	unsigned int initial_len = strlen(initial_str);
 	unsigned int total_crop = cleft_num + cright_num;
-	if (total_crop > inital_len) {
+	if (total_crop > initial_len) {
 		fprintf(stderr, "FE: Total crop value %u is greater than length of string\n", \
 			total_crop);
-		free(inital_str);
+		free(initial_str);
 		return(USER_ERROR);
 	}
 	// Crop left variables.
-	unsigned int lcrop_len = inital_len - cleft_num;
+	unsigned int lcrop_len = initial_len - cleft_num;
 	// Create left-cropped array.
 	char *lcropped = (char *) malloc(sizeof(char) * lcrop_len);
 
 	if ( lcropped == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
-		free(inital_str);
+		free(initial_str);
 		return(MEM_ERROR);
 	}
-	unsigned int inital_elements = ++inital_len;
-	for ( unsigned count = 0; count <= inital_elements; count++ ) {
+	unsigned int initial_elements = ++initial_len;
+	for ( unsigned count = 0; count <= initial_elements; count++ ) {
 		/// Add the left crop value onto the count value in order
 		/// to ensure it is cropped.
 		unsigned crop_count = count + cleft_num;
-		lcropped[count] = inital_str[crop_count];
+		lcropped[count] = initial_str[crop_count];
 	}
 
 	// Crop right variables
@@ -150,7 +150,7 @@ int main(int argc, char **argv) {
     if ( final_str == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
 		free(lcropped);
-		free(inital_str);
+		free(initial_str);
     	return(MEM_ERROR);
     }
 
@@ -160,13 +160,13 @@ int main(int argc, char **argv) {
     snprintf(final_str, ++f_elements, "%s", lcropped);
     printf("%s", final_str);
     free(lcropped);
-    free(inital_str);
+    free(initial_str);
     free(final_str);
 	return(REG_EXIT);
 }
 
 void print_usage() {
-	puts("Usage: strcrop [-l <left-crop>] [-s <inital_str>] [-r <right-crop>] [--version] [--help]");
+	puts("Usage: strcrop [-l <left-crop>] [-s <initial_str>] [-r <right-crop>] [--version] [--help]");
 	puts("Please see appropriate documentation for details on how to use the program.");
 }
 void print_version() {
