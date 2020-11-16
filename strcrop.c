@@ -124,8 +124,9 @@ int main(int argc, char **argv) {
 	}
 	// Crop left variables.
 	unsigned int lcrop_len = initial_len - cleft_num;
-	// Create left-cropped array.
-	char *lcropped = (char *) malloc(sizeof(char) * lcrop_len);
+	// Compensate for NULL character in case lcrop is zero.
+	unsigned int l_elements = ++lcrop_len;
+	char *lcropped = (char *) malloc(sizeof(char) * l_elements);
 
 	if ( lcropped == NULL ) {
 		fputs("FE: Unable to commit array to memory", stderr);
