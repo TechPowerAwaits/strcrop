@@ -77,6 +77,7 @@ int main(int argc, char **argv) {
 			if ( crop_left ) {
 				cleft_num = atoi(current_arg);
 				if ( cleft_num < 0 ) {
+					fprintf(stderr, "\nFE: User provided value %i is negative", cleft_num);
 					free(inital_str);
 					return(USER_ERROR);
 				}
@@ -84,6 +85,7 @@ int main(int argc, char **argv) {
 			else if ( crop_right ) {
 				cright_num = atoi(current_arg);
 				if ( cright_num < 0 ) {
+					fprintf(stderr, "\nFE: User provided value %i is negative", cleft_num);
 					free(inital_str);
 					return(USER_ERROR);
 				}
