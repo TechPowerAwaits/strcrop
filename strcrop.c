@@ -77,6 +77,8 @@ int main(int argc, char **argv) {
 			if ( crop_left ) {
 				cleft_num = atoi(current_arg);
 				if ( cleft_num < 0 ) {
+					fprintf(stderr, "\nFE: User provided value %i is negative\n", cleft_num);
+					print_usage();
 					free(inital_str);
 					return(USER_ERROR);
 				}
@@ -84,6 +86,8 @@ int main(int argc, char **argv) {
 			else if ( crop_right ) {
 				cright_num = atoi(current_arg);
 				if ( cright_num < 0 ) {
+					fprintf(stderr, "\nFE: User provided value %i is negative\n", cleft_num);
+					print_usage();
 					free(inital_str);
 					return(USER_ERROR);
 				}
@@ -109,11 +113,17 @@ int main(int argc, char **argv) {
 		fgets(inital_str, MAX_STR_LEN, stdin);
 	}
 
+	// Make sure to error out if crop values greater than string length.
+	unsigned int inital_len = strlen(inital_str);
+	unsigned int total_crop = cleft_num + cright_num;
+	if (total_crop > inital_len) {
+		fprintf(stderr, "FE: Total crop value %u is greater than length of string\n", \
+			total_crop);
+		free(inital_str);
+		return(USER_ERROR);
+	}
 	// Crop left variables.
-	int inital_len = strlen(inital_str);
-	int inital_elements = ++inital_len;
-	/// the length of the string minus left-cropped characters.
-	int lcrop_len = inital_len - cleft_num;
+	unsigned int lcrop_len = inital_len - cleft_num;
 	// Create left-cropped array.
 	char *lcropped = (char *) malloc(sizeof(char) * lcrop_len);
 
@@ -122,7 +132,7 @@ int main(int argc, char **argv) {
 		free(inital_str);
 		return(MEM_ERROR);
 	}
-
+	unsigned int inital_elements = ++inital_len;
 	for ( unsigned count = 0; count <= inital_elements; count++ ) {
 		/// Add the left crop value onto the count value in order
 		/// to ensure it is cropped.
@@ -131,9 +141,9 @@ int main(int argc, char **argv) {
 	}
 
 	// Crop right variables
-	int lcropped_len = strlen(lcropped);
-	int f_len = lcropped_len - cright_num - 1; ///> Final character num.
-	int f_elements = ++f_len; ///> Final elements length.
+	unsigned int lcropped_len = strlen(lcropped);
+	unsigned int f_len = lcropped_len - cright_num - 1; ///> Final character num.
+	unsigned int f_elements = ++f_len; ///> Final elements length.
 	/// A pointer to the final array with the right side cropped out.
     char *final_str = (char *) malloc(sizeof(char) * f_elements);
 
