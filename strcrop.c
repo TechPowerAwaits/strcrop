@@ -45,7 +45,7 @@ int main(int argc, char **argv) {
 		fputs("FE: Unable to commit array to memory", stderr);
 		return(MEM_ERROR);
 	}
-
+	inital_str[0] = '\0'; // Always ensure there is a NULL.
 	int cleft_num = 0;
 	int cright_num = 0;
 	_Bool crop_left = false;
