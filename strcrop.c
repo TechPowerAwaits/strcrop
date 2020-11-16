@@ -151,6 +151,7 @@ int main(int argc, char **argv) {
 	unsigned int lcropped_len = strlen(lcropped);
 	unsigned int f_len = lcropped_len - cright_num - 1; ///> Final character num.
 	unsigned int f_elements = ++f_len; ///> Final elements length.
+	unsigned int f_total = ++f_elements; ///> The value used with snprintf.
 	/// A pointer to the final array with the right side cropped out.
     char *final_str = (char *) malloc(sizeof(char) * f_elements);
 
@@ -164,7 +165,7 @@ int main(int argc, char **argv) {
     /* Copy the lcropped[] array into the final_str[] array with the right-cropped characters removed. */
     /// Copies the correct elements of string while ensuring it is null-terminated.
     /// This is something that strncpy can't do.
-    snprintf(final_str, ++f_elements, "%s", lcropped);
+    snprintf(final_str, f_total, "%s", lcropped);
     printf("%s", final_str);
     free(lcropped);
     free(initial_str);
