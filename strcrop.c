@@ -114,10 +114,10 @@ int main(int argc, char **argv) {
 	}
 
 	// Crop left variables.
-	int inital_len = strlen(inital_str);
-	int inital_elements = ++inital_len;
+	unsigned int inital_len = strlen(inital_str);
+	unsigned int inital_elements = ++inital_len;
 	/// the length of the string minus left-cropped characters.
-	int lcrop_len = inital_len - cleft_num;
+	unsigned int lcrop_len = inital_len - cleft_num;
 	// Create left-cropped array.
 	char *lcropped = (char *) malloc(sizeof(char) * lcrop_len);
 
@@ -135,9 +135,9 @@ int main(int argc, char **argv) {
 	}
 
 	// Crop right variables
-	int lcropped_len = strlen(lcropped);
-	int f_len = lcropped_len - cright_num - 1; ///> Final character num.
-	int f_elements = ++f_len; ///> Final elements length.
+	unsigned int lcropped_len = strlen(lcropped);
+	unsigned int f_len = lcropped_len - cright_num - 1; ///> Final character num.
+	unsigned int f_elements = ++f_len; ///> Final elements length.
 	/// A pointer to the final array with the right side cropped out.
     char *final_str = (char *) malloc(sizeof(char) * f_elements);
 
