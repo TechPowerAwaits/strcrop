@@ -113,10 +113,16 @@ int main(int argc, char **argv) {
 		fgets(inital_str, MAX_STR_LEN, stdin);
 	}
 
-	// Crop left variables.
+	// Make sure to error out if crop values greater than string length.
 	unsigned int inital_len = strlen(inital_str);
-	unsigned int inital_elements = ++inital_len;
-	/// the length of the string minus left-cropped characters.
+	unsigned int total_crop = cleft_num + cright_num;
+	if (total_crop > inital_len) {
+		fprintf(stderr, "FE: Total crop value %u is greater than length of string", \
+			total_crop);
+		free(inital_str);
+		return(USER_ERROR);
+	}
+	// Crop left variables.
 	unsigned int lcrop_len = inital_len - cleft_num;
 	// Create left-cropped array.
 	char *lcropped = (char *) malloc(sizeof(char) * lcrop_len);
@@ -126,7 +132,7 @@ int main(int argc, char **argv) {
 		free(inital_str);
 		return(MEM_ERROR);
 	}
-
+	unsigned int inital_elements = ++inital_len;
 	for ( unsigned count = 0; count <= inital_elements; count++ ) {
 		/// Add the left crop value onto the count value in order
 		/// to ensure it is cropped.
