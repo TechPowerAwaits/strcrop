@@ -139,6 +139,12 @@ int main(int argc, char **argv) {
 		/// to ensure it is cropped.
 		unsigned crop_count = count + cleft_num;
 		lcropped[count] = initial_str[crop_count];
+
+		if (initial_str[crop_count] == '\0') {
+			// To stop the loop once it reaches the end
+			// of the initial_str character array.
+			break;
+		}
 	}
 
 	// Crop right variables
