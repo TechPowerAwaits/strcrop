@@ -1,4 +1,5 @@
 # __strcrop__
+![](strcrop.ico)
 
 ## __About__
 
