@@ -17,6 +17,6 @@ standard input. If no arguments are provided, it will just echo standard input.
 
 ## __Information for Lawyers__
 
-Copyright 2020 Richard Johnston <<techpowerawaits@outlook.com>>
+Copyright 2020-2021 Richard Johnston <<techpowerawaits@outlook.com>>
 
 See LICENSE.txt for further details.
