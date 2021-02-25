@@ -1,4 +1,4 @@
-// Copyright Richard Johnston 2020 <techpowerawaits@outlook.com>
+// Copyright Richard Johnston 2020-2021 <techpowerawaits@outlook.com>
 //
 // SPDX-license-identifier: 0BSD
 
